@@ -25,9 +25,13 @@
 
 *(Replace the placeholder URLs with your actual GitHub image URLs once you take screenshots)*
 
-| 🏠 Home Dashboard | 🛡️ Pause Before Pay (AI) | 📈 AI Round-Ups |
+| 🏠 Home Dashboard | 🛡️ Pause Before Pay (AI) | 📈 AI Analyzer |
 | :---: | :---: | :---: |
-| <img src="https://placehold.co/250x500/0f172a/ffffff?text=Home+Screen\nScreenshot" width="250" /> | <img src="https://placehold.co/250x500/4c1d95/ffffff?text=AI+Intervention\nScreenshot" width="250" /> | <img src="https://placehold.co/250x500/0ea5e9/ffffff?text=Buy+The+Dip\nScreenshot" width="250" /> |
+| <img width="621" height="912" alt="image" src="https://github.com/user-attachments/assets/25fc55b0-f9c8-4b3c-88bc-a0e8702de8e8" />
+<img width="502" height="869" alt="image" src="https://github.com/user-attachments/assets/ff1140ff-8267-410a-a3e5-62fd34bad6bd" />
+<img width="552" height="849" alt="image" src="https://github.com/user-attachments/assets/53dc9060-0119-4970-99fe-56ead8e9d595" />
+
+ |
 
 ---
 
