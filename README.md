@@ -88,24 +88,4 @@ graph TD
 
 
 
-🛠️ Installation & Setup
-Clone the repository
 
-bash
-git clone https://github.com/piyushagr0905/SenPay.git
-cd SenPay
-Backend Setup
-
-bash
-cd backend/backend
-npm install
-# Set up your .env file with your PostgreSQL DATABASE_URL
-npx prisma db push
-npx prisma generate
-npm start
-Frontend Setup (Note: Vite requires the project path to not contain # characters)
-
-bash
-cd frontend/frontend
-npm install
-npm run dev
