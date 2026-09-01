@@ -55,29 +55,7 @@ Instead of reacting after financial damage occurs, SenPay introduces an intellig
 
 ---
 
-## ✨ Core Features
-
-<table>
-  <tr>
-    <td width="50%">
-      <h3>🛡️ Sentinel Risk Engine</h3>
-      <p>
-        Introduces <strong>Cognitive Friction</strong> at the exact moment it matters.
-        If you initiate a transaction to a known scammer or under suspicious
-        circumstances — such as a late-night transfer to an unknown account —
-        Sentinel intelligently evaluates the transaction.
-      </p>
-      <p>
-        When risk is detected, the payment flow is interrupted with a
-        <strong>"Pause Before Pay"</strong> intervention that explains the
-        potential threat in plain English.
-      </p>
-      <p>
-        Users can also involve a <strong>Trusted Contact</strong> for a second
-        opinion before proceeding.
-      </p>
-    </td>
-
+ 
     <td width="50%">
       <h3>📈 AI Round-Ups — "Buy the Dip"</h3>
       <p>
