@@ -1,0 +1,227 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model UserProfile {
+  id                String               @id @default(uuid())
+  deviceId          String               @unique
+  name              String
+  phone             String
+  upiId             String
+  avatarUrl         String
+  balance           Float
+  protectionActive  Boolean
+  frictionLevel     String
+  seniorSafetyMode  Boolean
+  securityScore     Int
+  stats             UserStats?
+  trustedContacts   TrustedContact[]
+  transactions      PaymentTransaction[]
+}
+
+model UserStats {
+  id                String       @id @default(uuid())
+  scamsPrevented    Int
+  amountSaved       Float
+  scansPerformed    Int
+  safePaymentsCount Int
+  userId            String       @unique
+  user              UserProfile  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model TrustedContact {
+  id                 String       @id @default(uuid())
+  name               String
+  relationship       String
+  phone              String
+  avatarUrl          String?
+  isEmergencyContact Boolean
+  canApproveHighRisk Boolean
+  status             String
+  userId             String
+  user               UserProfile  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Recipient {
+  id                    String               @id @default(uuid())
+  name                  String
+  upiId                 String
+  phone                 String?
+  bankAccount           String?
+  avatarUrl             String?
+  initials              String
+  isKnown               Boolean
+  previousPaymentsCount Int
+  totalTransferred      Float
+  trustScore            Int
+  category              String?
+  isVerifiedMerchant    Boolean?
+  isWhitelisted         Boolean?
+  transactions          PaymentTransaction[]
+}
+
+model PaymentTransaction {
+  id              String          @id @default(uuid())
+  amount          Float
+  purpose         String
+  purposeCategory String
+  paymentMethod   String
+  timestamp       DateTime
+  formattedDate   String
+  status          String
+  transactionRef  String?
+  note            String?
+  recipientId     String
+  recipient       Recipient       @relation(fields: [recipientId], references: [id])
+  userId          String?
+  user            UserProfile?    @relation(fields: [userId], references: [id])
+  riskAssessment  RiskAssessment?
+  scamCase        ScamCase?
+}
+
+model RiskAssessment {
+  id                    String             @id @default(uuid())
+  level                 String
+  decision              String
+  riskScore             Int
+  headline              String
+  subheadline           String
+  responsibleDisclaimer String
+  recommendation        String
+  transactionId         String             @unique
+  transaction           PaymentTransaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  reasons               RiskReason[]
+  signals               RiskSignal[]
+  suggestedActions      SuggestedAction[]
+}
+
+model RiskReason {
+  id               String         @id @default(uuid())
+  title            String
+  description      String
+  severity         String
+  iconType         String
+  riskAssessmentId String
+  riskAssessment   RiskAssessment @relation(fields: [riskAssessmentId], references: [id], onDelete: Cascade)
+}
+
+model RiskSignal {
+  id               String         @id @default(uuid())
+  category         String
+  title            String
+  description      String
+  severity         String
+  confidence       Int
+  evidence         String?
+  riskAssessmentId String
+  riskAssessment   RiskAssessment @relation(fields: [riskAssessmentId], references: [id], onDelete: Cascade)
+}
+
+model SuggestedAction {
+  id               String         @id @default(uuid())
+  label            String
+  actionType       String
+  isPrimary        Boolean?
+  isSafe           Boolean?
+  riskAssessmentId String
+  riskAssessment   RiskAssessment @relation(fields: [riskAssessmentId], references: [id], onDelete: Cascade)
+}
+
+model ScamCase {
+  id                   String              @id @default(uuid())
+  caseNumber           String
+  title                String
+  description          String
+  scamType             String
+  reportedAmount       Float
+  reportedAt           DateTime
+  status               String
+  recommendedNextSteps String[]
+  cyberCellReference   String?
+  bankDisputeId        String?
+  transactionId        String?             @unique
+  transaction          PaymentTransaction? @relation(fields: [transactionId], references: [id])
+  evidence             CaseEvidence[]
+  timeline             CaseTimelineEvent[]
+}
+
+model CaseEvidence {
+  id            String   @id @default(uuid())
+  type          String
+  fileName      String
+  fileSize      String?
+  previewUrl    String?
+  timestamp     DateTime
+  extractedText String?
+  scamCaseId    String
+  scamCase      ScamCase @relation(fields: [scamCaseId], references: [id], onDelete: Cascade)
+}
+
+model CaseTimelineEvent {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  timestamp   DateTime
+  status      String
+  scamCaseId  String
+  scamCase    ScamCase @relation(fields: [scamCaseId], references: [id], onDelete: Cascade)
+}
+
+model ScamMessageAnalysis {
+  id                String   @id @default(uuid())
+  rawText           String
+  detectedType      String
+  riskLevel         String
+  confidenceScore   Float
+  urgencyScore      Float
+  financialRiskScore Float
+  impersonationTarget String?
+  keyRedFlags       String[]
+  legitimacyChecks  String[]
+  recommendedAction String
+  safetyTips        String[]
+}
+
+model SafeCheckResult {
+  id                String   @id @default(uuid())
+  target            String
+  type              String
+  riskLevel         String
+  riskScore         Float
+  reputationSummary String
+  signalsFound      String[]
+  recommendation    String
+  // verifiedIdentity as JSON for simplicity
+  verifiedIdentity  Json?
+}
+
+model GraphEntity {
+  id              String      @id @default(uuid())
+  label           String
+  type            String      // 'victim' | 'mule' | 'cashout' | 'merchant'
+  riskLevel       String      // 'low' | 'medium' | 'high' | 'critical'
+  totalReceived   Float
+  totalSent       Float
+  transactionCount Int
+  connectedCount  Int
+  location        String?
+  flaggedAt       DateTime?
+  outgoingEdges   GraphEdge[] @relation("EdgeSource")
+  incomingEdges   GraphEdge[] @relation("EdgeTarget")
+}
+
+model GraphEdge {
+  id           String      @id @default(uuid())
+  sourceId     String
+  targetId     String
+  relationType String      // 'paid_to' | 'rapid_transfer' | 'shared_device' | 'reported_in_case'
+  amount       Float
+  timestamp    DateTime
+  isHighRisk   Boolean     @default(false)
+  source       GraphEntity @relation("EdgeSource", fields: [sourceId], references: [id])
+  target       GraphEntity @relation("EdgeTarget", fields: [targetId], references: [id])
+}
