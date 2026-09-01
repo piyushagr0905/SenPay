@@ -3,15 +3,31 @@
   <h1>🛡️ SenPay (powered by Sentinel AI)</h1>
   <p><strong>The world's first proactive, AI-driven financial guardian.</strong></p>
 
+  <!-- Badges -->
   <p>
-    <a href="#features">Features</a> •
-    <a href="#the-problem">The Problem</a> •
-    <a href="#installation">Installation</a> •
-    <a href="#tech-stack">Tech Stack</a>
+    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+    <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+  </p>
+
+  <p>
+    <a href="#-the-problem">The Problem</a> •
+    <a href="#-core-features">Features</a> •
+    <a href="#-system-architecture">Architecture</a> •
+    <a href="#-installation--setup">Installation</a>
   </p>
 </div>
 
 ---
+
+## 📸 App Interface
+
+*(Replace the placeholder URLs with your actual GitHub image URLs once you take screenshots)*
+
+| 🏠 Home Dashboard | 🛡️ Pause Before Pay (AI) | 📈 AI Round-Ups |
+| :---: | :---: | :---: |
+| <img src="https://placehold.co/250x500/0f172a/ffffff?text=Home+Screen\nScreenshot" width="250" /> | <img src="https://placehold.co/250x500/4c1d95/ffffff?text=AI+Intervention\nScreenshot" width="250" /> | <img src="https://placehold.co/250x500/0ea5e9/ffffff?text=Buy+The+Dip\nScreenshot" width="250" /> |
 
 ---
 
@@ -25,57 +41,43 @@ Traditional banking applications are built on a reactive paradigm—they wait fo
 
 ## ✨ Core Features
 
-### 🛡️ Sentinel Risk Engine (Pause Before Pay)
-SenPay introduces **Cognitive Friction**. If you initiate a transaction to a known scammer or under suspicious circumstances (e.g., 2 AM transfers to unknown offshore accounts), Sentinel physically intercepts the flow. It flags the anomaly, forces a "Pause Before Pay" screen, and gives you a plain-English explanation of why the transfer is risky. You can even ping a **Trusted Contact** for a second opinion before the money leaves your device.
-
-### 📈 AI Round-Ups ("Buy-The-Dip")
-Why just save spare change when your app can trade for you? Sentinel analyzes real-time macro-economic data. If you buy a ₹145 coffee while the stock market is crashing, Sentinel dynamically applies a **2.5x multiplier** to your spare change, aggressively "buying the dip" on your behalf. 
-
-### 🔍 SafeCheck Sandbox
-Don't click that link. Paste suspicious SMS messages, WhatsApp forwards, or phishing links directly into the SafeCheck analyzer. Sentinel AI immediately cross-references the text against known phishing patterns and malicious domains to deliver a definitive safe/scam verdict.
-
-### 💳 Intelligent Financial Tools
-- **SenPay Credit Line:** Zero-interest, pre-approved 'Buy Now, Pay Later' liquidity.
-- **Smart Bill Split:** Uses Optical Character Recognition (OCR) and AI to scan a restaurant receipt, itemize it, and instantly request exact amounts from friends.
-- **Inclusive Controls:** Family Wallets (to block gaming purchases for kids) and Senior Safety Mode (strict verification for elderly parents).
-
----
-
-## 💻 Tech Stack
-
-- **Frontend:** React, TypeScript, Vite, Tailwind CSS, Framer Motion
-- **Backend:** Node.js, Express
-- **Database & ORM:** PostgreSQL, Prisma (v7.10)
-- **AI/ML:** Sentinel Risk Heuristics
-
----
-
-## 🛠️ Installation & Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/sentinal.git
-   cd sentinal
-   ```
-
-2. **Backend Setup**
-   ```bash
-   cd backend/backend
-   npm install
-   # Set up your .env file with DATABASE_URL
-   npx prisma db push
-   npx prisma generate
-   npm start
-   ```
-
-3. **Frontend Setup**
-   *(Note: Vite requires the project path to not contain `#` characters)*
-   ```bash
-   cd frontend/frontend
-   npm install
-   npm run dev
-   ```
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🛡️ Sentinel Risk Engine</h3>
+      <p>Introduces <strong>Cognitive Friction</strong>. If you initiate a transaction to a known scammer or under suspicious circumstances (e.g., 2 AM transfers to unknown offshore accounts), Sentinel physically intercepts the flow. It forces a "Pause Before Pay" screen and gives you a plain-English explanation of why the transfer is risky. You can even ping a <strong>Trusted Contact</strong> for a second opinion.</p>
+    </td>
+    <td width="50%">
+      <h3>📈 AI Round-Ups ("Buy-The-Dip")</h3>
+      <p>Why just save spare change when your app can trade for you? Sentinel analyzes real-time macro-economic data. If you buy a ₹145 coffee while the stock market is crashing, Sentinel dynamically applies a <strong>2.5x multiplier</strong> to your spare change, aggressively "buying the dip" on your behalf.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🔍 SafeCheck Sandbox</h3>
+      <p>Don't click that link. Paste suspicious SMS messages, WhatsApp forwards, or phishing links directly into the SafeCheck analyzer. Sentinel AI immediately cross-references the text against known phishing patterns and malicious domains to deliver a definitive safe/scam verdict.</p>
+    </td>
+    <td width="50%">
+      <h3>💳 Intelligent Financial Tools</h3>
+      <ul>
+        <li><strong>Credit Line:</strong> Zero-interest 'Buy Now, Pay Later'.</li>
+        <li><strong>Smart Bill Split:</strong> AI scans restaurant receipts, itemizes them, and requests exact amounts from friends.</li>
+        <li><strong>Inclusive Controls:</strong> Family Wallets & Senior Safety Mode.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ---
 
-> *"For the past decade, the fintech industry has been obsessed with asking, 'How fast can we move the user's money?' With SenPay, we are finally asking the right question: 'How safely and intelligently can we manage it?' We are not just building another digital wallet. We are building a financial sanctuary. We are restoring trust to the digital economy, one intelligent transaction at a time."*
+## 🏗️ System Architecture
+
+```mermaid
+graph TD
+    A[Client App - React/Vite] -->|HTTPS Requests| B(Express.js Backend)
+    B --> C{Sentinel Risk Engine}
+    C -->|Safe| D[Process Transaction]
+    C -->|High Risk| E[Trigger 'Pause Before Pay']
+    D --> F[(PostgreSQL Database)]
+    E --> F
+    F -->|ORM| G(Prisma Client)
