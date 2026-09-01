@@ -13,13 +13,6 @@
 
 ---
 
-## 📸 Screenshots
-*(Add your screenshots here before pushing to GitHub!)*
-
-| Home Dashboard | Pause Before Pay (AI Intervention) | AI Round-Ups (Buy the Dip) |
-| :---: | :---: | :---: |
-| <img src="path/to/home-ss.png" width="250" /> | <img src="path/to/pause-ss.png" width="250" /> | <img src="path/to/roundup-ss.png" width="250" /> |
-
 ---
 
 ## 🚨 The Problem: The Paradox of Fast Fintech
